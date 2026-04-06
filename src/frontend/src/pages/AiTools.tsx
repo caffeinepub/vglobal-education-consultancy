@@ -26,7 +26,7 @@ import {
   XCircle,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import SEOHead from "../components/SEOHead";
 import { useActor } from "../hooks/useActor";
@@ -1788,7 +1788,7 @@ function CountryQuiz({ lead }: { lead: LeadData }) {
   }
 
   return (
-    <div className="space-y-6">
+    <section className="space-y-5 p-1">
       <div className="flex items-center gap-3">
         <span className="text-sm text-muted-foreground whitespace-nowrap">
           Question {step + 1} of {quizQuestions.length}
@@ -1809,25 +1809,25 @@ function CountryQuiz({ lead }: { lead: LeadData }) {
           <h3 className="font-display font-bold text-navy text-lg">
             {quizQuestions[step].q}
           </h3>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {quizQuestions[step].options.map((opt, i) => (
               <button
                 key={opt}
                 type="button"
-                className="w-full text-left px-4 py-3 rounded-lg border border-border hover:border-gold hover:bg-gold/5 transition-all text-sm font-medium group flex items-start gap-3"
+                className="w-full text-left px-4 py-3 rounded-lg border border-border hover:border-gold hover:bg-gold/5 transition-all text-sm font-medium group flex items-start gap-3 min-h-[52px]"
                 onClick={() => pickAnswer(i)}
                 data-ocid={`quiz.option.${i + 1}`}
               >
-                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-navy/10 text-navy text-xs font-bold text-center leading-6 group-hover:bg-gold group-hover:text-white transition-colors">
+                <span className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold bg-gold/10 text-gold group-hover:bg-gold group-hover:text-white transition-colors">
                   {String.fromCharCode(65 + i)}
                 </span>
-                <span className="flex-1">{opt}</span>
+                <span className="flex-1 leading-snug">{opt}</span>
               </button>
             ))}
           </div>
         </motion.div>
       </AnimatePresence>
-    </div>
+    </section>
   );
 }
 
@@ -2208,99 +2208,101 @@ function BudgetCalculator({ lead: _lead }: { lead: LeadData }) {
           animate={{ opacity: 1, y: 0 }}
           className="space-y-4"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="bg-gold/10 border border-gold/30 rounded-xl p-4 text-center">
-              <div className="text-xs text-muted-foreground mb-1">
-                Per Year (USD)
+          <section className="pt-6 border-t border-border mt-4 space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="bg-gold/10 border border-gold/30 rounded-xl p-5 text-center min-h-[90px] flex flex-col justify-center gap-1">
+                <div className="text-xs text-muted-foreground">
+                  Per Year (USD)
+                </div>
+                <div className="font-display font-bold text-navy text-xl whitespace-nowrap">
+                  ${totalPerYear.toLocaleString()}
+                </div>
               </div>
-              <div className="font-display font-bold text-navy text-xl">
-                ${totalPerYear.toLocaleString()}
+              <div className="bg-navy/5 border border-navy/20 rounded-xl p-5 text-center min-h-[90px] flex flex-col justify-center gap-1">
+                <div className="text-xs text-muted-foreground">
+                  Per Year (INR approx.)
+                </div>
+                <div className="font-display font-bold text-navy text-xl whitespace-nowrap">
+                  ₹{(totalInINR / 100000).toFixed(1)}L
+                </div>
+              </div>
+              <div className="bg-green-50 border border-green-200 rounded-xl p-5 text-center min-h-[90px] flex flex-col justify-center gap-1">
+                <div className="text-xs text-muted-foreground">
+                  {data.duration}-Year Total (USD)
+                </div>
+                <div className="font-display font-bold text-green-800 text-xl whitespace-nowrap">
+                  ${totalCourse.toLocaleString()}
+                </div>
               </div>
             </div>
-            <div className="bg-navy/5 border border-navy/20 rounded-xl p-4 text-center">
-              <div className="text-xs text-muted-foreground mb-1">
-                Per Year (INR approx.)
-              </div>
-              <div className="font-display font-bold text-navy text-xl">
-                ₹{(totalInINR / 100000).toFixed(1)}L
-              </div>
-            </div>
-            <div className="bg-green-50 border border-green-200 rounded-xl p-4 text-center">
-              <div className="text-xs text-muted-foreground mb-1">
-                {data.duration}-Year Total (USD)
-              </div>
-              <div className="font-display font-bold text-green-800 text-xl">
-                ${totalCourse.toLocaleString()}
-              </div>
-            </div>
-          </div>
-          <div className="rounded-xl border border-border overflow-hidden">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-navy text-white">
-                  <th className="text-left px-4 py-2">Expense</th>
-                  <th className="text-right px-4 py-2">Annual (USD)</th>
-                  <th className="text-right px-4 py-2">% of Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {breakdown.map((item, i) => (
-                  <tr
-                    key={item.label}
-                    className={i % 2 === 0 ? "bg-white" : "bg-secondary"}
-                  >
-                    <td className="px-4 py-2.5">{item.label}</td>
-                    <td className="px-4 py-2.5 text-right font-medium">
-                      ${item.usd.toLocaleString()}
-                    </td>
-                    <td className="px-4 py-2.5 text-right">
-                      <div className="flex items-center justify-end gap-2">
-                        <div
-                          className="h-2 bg-gold/30 rounded-full"
-                          style={{
-                            width: `${Math.min(item.pct, 70)}%`,
-                            maxWidth: "56px",
-                            minWidth: "6px",
-                          }}
-                        />
-                        <span className="shrink-0">{item.pct}%</span>
-                      </div>
-                    </td>
+            <div className="rounded-xl border border-border overflow-hidden">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-navy text-white">
+                    <th className="text-left px-4 py-2">Expense</th>
+                    <th className="text-right px-4 py-2">Annual (USD)</th>
+                    <th className="text-right px-4 py-2">% of Total</th>
                   </tr>
-                ))}
-                <tr className="bg-navy text-white font-bold">
-                  <td className="px-4 py-2.5">Total Per Year</td>
-                  <td className="px-4 py-2.5 text-right">
-                    ${totalPerYear.toLocaleString()}
-                  </td>
-                  <td className="px-4 py-2.5 text-right">100%</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          {data.notes && (
-            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex gap-2 text-sm">
-              <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-              <span className="text-amber-900">{data.notes}</span>
+                </thead>
+                <tbody>
+                  {breakdown.map((item, i) => (
+                    <tr
+                      key={item.label}
+                      className={i % 2 === 0 ? "bg-white" : "bg-secondary"}
+                    >
+                      <td className="px-4 py-2.5">{item.label}</td>
+                      <td className="px-4 py-2.5 text-right font-medium">
+                        ${item.usd.toLocaleString()}
+                      </td>
+                      <td className="px-4 py-2.5 text-right">
+                        <div className="flex items-center justify-end gap-2">
+                          <div
+                            className="h-2 bg-gold/30 rounded-full"
+                            style={{
+                              width: `${Math.min(item.pct, 70)}%`,
+                              maxWidth: "56px",
+                              minWidth: "6px",
+                            }}
+                          />
+                          <span className="shrink-0">{item.pct}%</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                  <tr className="bg-navy text-white font-bold">
+                    <td className="px-4 py-2.5">Total Per Year</td>
+                    <td className="px-4 py-2.5 text-right">
+                      ${totalPerYear.toLocaleString()}
+                    </td>
+                    <td className="px-4 py-2.5 text-right">100%</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          )}
-          <div className="bg-navy text-white rounded-xl p-4 flex flex-col md:flex-row items-center gap-4 justify-between">
-            <div>
-              <p className="font-semibold">Want an exact fee quote?</p>
-              <p className="text-white/80 text-sm mt-0.5">
-                VGLOBAL counsellors can give you the current fee structure from
-                the university directly.
-              </p>
+            {data.notes && (
+              <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex gap-2 text-sm">
+                <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                <span className="text-amber-900">{data.notes}</span>
+              </div>
+            )}
+            <div className="bg-navy text-white rounded-xl p-4 flex flex-col md:flex-row items-center gap-4 justify-between">
+              <div>
+                <p className="font-semibold">Want an exact fee quote?</p>
+                <p className="text-white/80 text-sm mt-0.5">
+                  VGLOBAL counsellors can give you the current fee structure
+                  from the university directly.
+                </p>
+              </div>
+              <Link to="/counselling">
+                <Button
+                  className="bg-gold hover:bg-gold-dark text-navy font-bold shrink-0"
+                  data-ocid="budget.counselling.button"
+                >
+                  Get Exact Quote <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
             </div>
-            <Link to="/counselling">
-              <Button
-                className="bg-gold hover:bg-gold-dark text-navy font-bold shrink-0"
-                data-ocid="budget.counselling.button"
-              >
-                Get Exact Quote <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-            </Link>
-          </div>
+          </section>
         </motion.div>
       )}
     </div>
@@ -2418,154 +2420,17 @@ function LeadForm({
 }
 
 // ---------------------------------------------------------------------------
-// ToolSection wrapper — renders LeadForm if not unlocked, else the tool
-// ---------------------------------------------------------------------------
-function ToolSection({
-  id,
-  tool,
-  lead,
-  onLeadSubmit,
-  bg,
-  children,
-}: {
-  id: ToolId;
-  tool: (typeof tools)[number];
-  lead: LeadData | null;
-  onLeadSubmit: (data: LeadData) => void;
-  bg: string;
-  children: React.ReactNode;
-}) {
-  const Icon = tool.icon;
-  return (
-    <section id={id} className={`py-16 ${bg} scroll-mt-24`}>
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          {/* Section header */}
-          <div className="flex items-start gap-4 mb-8">
-            <div
-              className={`p-3 rounded-xl bg-gradient-to-br ${tool.color} text-white shrink-0`}
-            >
-              <Icon className="w-7 h-7" />
-            </div>
-            <div className="min-w-0">
-              <h2 className="text-2xl font-display font-bold text-navy">
-                {tool.title}
-              </h2>
-              <p className="text-muted-foreground text-sm mt-1">{tool.desc}</p>
-            </div>
-          </div>
-          {/* Card body */}
-          <Card className="border-border shadow-md overflow-hidden">
-            <div className={`h-1.5 bg-gradient-to-r ${tool.color}`} />
-            <CardContent className="p-6 md:p-8 min-h-[400px]">
-              {lead ? (
-                children
-              ) : (
-                <LeadForm toolTitle={tool.title} onSubmit={onLeadSubmit} />
-              )}
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // ---------------------------------------------------------------------------
-// JumpNav
-// ---------------------------------------------------------------------------
-function JumpNav({ activeSection }: { activeSection: ToolId | null }) {
-  const navItems: { id: ToolId; label: string; icon: React.ElementType }[] = [
-    { id: "predictor", label: "NEET Predictor", icon: Target },
-    { id: "matcher", label: "Uni Matcher", icon: BrainCircuit },
-    { id: "quiz", label: "Country Quiz", icon: ClipboardList },
-    { id: "eligibility", label: "Eligibility", icon: Bot },
-    { id: "budget", label: "Budget Calc", icon: Calculator },
-  ];
-
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  return (
-    <div
-      className="sticky top-16 z-30 bg-white border-b border-border shadow-sm"
-      data-ocid="aitools.jump_nav.panel"
-    >
-      <div className="container mx-auto px-4">
-        <div className="overflow-x-auto scrollbar-hide">
-          <div className="flex flex-nowrap gap-1 py-2 min-w-max md:min-w-0 md:justify-center">
-            {navItems.map((item) => {
-              const ItemIcon = item.icon;
-              const isActive = activeSection === item.id;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => scrollTo(item.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
-                    isActive
-                      ? "bg-navy text-white"
-                      : "text-foreground hover:bg-secondary hover:text-navy"
-                  }`}
-                  data-ocid={`aitools.jump.${item.id}.button`}
-                >
-                  <ItemIcon className="w-4 h-4 shrink-0" />
-                  {item.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Main AiTools page
+// Main AiTools page — tab-based layout (Version 19 style)
 // ---------------------------------------------------------------------------
 export default function AiTools() {
+  const [activeTool, setActiveTool] = useState<ToolId>("predictor");
   const [lead, setLead] = useState<LeadData | null>(null);
-  const [activeSection, setActiveSection] = useState<ToolId | null>(null);
 
-  // IntersectionObserver to track active section
-  const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id as ToolId);
-          }
-        }
-      },
-      { threshold: 0.3, rootMargin: "-80px 0px -40% 0px" },
-    );
-
-    const toolIds: ToolId[] = [
-      "predictor",
-      "matcher",
-      "quiz",
-      "eligibility",
-      "budget",
-    ];
-    for (const id of toolIds) {
-      const el = document.getElementById(id);
-      if (el) {
-        sectionRefs.current.set(id, el);
-        observer.observe(el);
-      }
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const handleLeadSubmit = (data: LeadData) => {
-    setLead(data);
-  };
+  const handleLeadSubmit = (data: LeadData) => setLead(data);
+  const activeToolMeta = tools.find((t) => t.id === activeTool)!;
+  const ActiveIcon = activeToolMeta.icon;
 
   return (
     <main className="pt-16 md:pt-20">
@@ -2577,7 +2442,7 @@ export default function AiTools() {
       />
 
       {/* Hero */}
-      <section className="relative py-24 text-white overflow-hidden min-h-[420px] flex items-center">
+      <section className="relative isolate py-20 text-white overflow-hidden min-h-[380px] flex items-center">
         <img
           src="/assets/generated/ai-tools-hero.dim_1200x600.jpg"
           alt="AI MBBS Admission Tools"
@@ -2602,89 +2467,118 @@ export default function AiTools() {
               check eligibility, and calculate your budget — all based on your
               NEET score and goals.
             </p>
-            <div className="flex flex-wrap gap-3 mt-6">
-              {tools.map((t) => {
-                const TIcon = t.icon;
-                return (
-                  <button
-                    key={t.id}
-                    type="button"
-                    onClick={() => {
-                      const el = document.getElementById(t.id);
-                      if (el) el.scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-all border border-white/20"
-                  >
-                    <TIcon className="w-3.5 h-3.5" />
-                    {t.title.replace("AI ", "")}
-                  </button>
-                );
-              })}
-            </div>
+            <p className="text-white/60 text-sm mt-4">
+              Select a tool below to get started ↓
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Jump Navigation */}
-      <JumpNav activeSection={activeSection} />
+      {/* Tool selector cards */}
+      <section className="relative z-10 bg-secondary border-b border-border py-8">
+        <div className="container mx-auto px-4">
+          <p className="text-center text-sm text-muted-foreground mb-6 font-medium uppercase tracking-wide">
+            Select a Tool
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {tools.map((tool) => {
+              const TIcon = tool.icon;
+              const isActive = activeTool === tool.id;
+              return (
+                <button
+                  key={tool.id}
+                  type="button"
+                  onClick={() => setActiveTool(tool.id)}
+                  className={`relative flex flex-col items-start p-4 rounded-xl border-2 bg-white text-left transition-all w-full overflow-hidden ${isActive ? "border-navy shadow-lg" : "border-transparent shadow-sm hover:border-navy/30 hover:shadow-md"}`}
+                  data-ocid={`aitools.${tool.id}.tab`}
+                >
+                  <div
+                    className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${tool.color}`}
+                  />
+                  <div
+                    className={`p-2 rounded-lg mb-3 mt-1 ${tool.accentBg} bg-opacity-10`}
+                  >
+                    <TIcon className="w-5 h-5 text-navy" />
+                  </div>
+                  <div className="font-semibold text-navy text-sm leading-tight">
+                    {tool.title}
+                  </div>
+                  {isActive && (
+                    <div className="mt-1 w-4 h-0.5 bg-navy rounded-full" />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-      {/* Tool 1: NEET Score Predictor */}
-      <ToolSection
-        id="predictor"
-        tool={tools[0]}
-        lead={lead}
-        onLeadSubmit={handleLeadSubmit}
-        bg="bg-white"
-      >
-        <NeetPredictor lead={lead!} />
-      </ToolSection>
-
-      {/* Tool 2: AI University Matcher */}
-      <ToolSection
-        id="matcher"
-        tool={tools[1]}
-        lead={lead}
-        onLeadSubmit={handleLeadSubmit}
-        bg="bg-gray-50"
-      >
-        <UniversityMatcher lead={lead!} />
-      </ToolSection>
-
-      {/* Tool 3: Country Fit Quiz */}
-      <ToolSection
-        id="quiz"
-        tool={tools[2]}
-        lead={lead}
-        onLeadSubmit={handleLeadSubmit}
-        bg="bg-white"
-      >
-        <CountryQuiz lead={lead!} />
-      </ToolSection>
-
-      {/* Tool 4: MBBS Eligibility Checker */}
-      <ToolSection
-        id="eligibility"
-        tool={tools[3]}
-        lead={lead}
-        onLeadSubmit={handleLeadSubmit}
-        bg="bg-gray-50"
-      >
-        <EligibilityChecker lead={lead!} />
-      </ToolSection>
-
-      {/* Tool 5: Budget Calculator */}
-      <ToolSection
-        id="budget"
-        tool={tools[4]}
-        lead={lead}
-        onLeadSubmit={handleLeadSubmit}
-        bg="bg-white"
-      >
-        <BudgetCalculator lead={lead!} />
-      </ToolSection>
+      {/* Active tool panel */}
+      <section className="relative z-10 py-12 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            {/* Tool header */}
+            <div className="flex items-start gap-4 mb-6">
+              <div
+                className={`p-3 rounded-xl bg-gradient-to-br ${activeToolMeta.color} text-white shrink-0`}
+              >
+                <ActiveIcon className="w-6 h-6" />
+              </div>
+              <div className="min-w-0">
+                <h2 className="text-2xl font-display font-bold text-navy">
+                  {activeToolMeta.title}
+                </h2>
+                <p className="text-muted-foreground text-sm mt-1">
+                  {activeToolMeta.desc}
+                </p>
+              </div>
+            </div>
+            {/* Tool card */}
+            <Card className="border-border shadow-md overflow-hidden">
+              <div
+                className={`h-1.5 bg-gradient-to-r ${activeToolMeta.color}`}
+              />
+              <CardContent className="p-6 md:p-8 min-h-[400px]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTool}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {lead ? (
+                      <>
+                        {activeTool === "predictor" && (
+                          <NeetPredictor lead={lead} />
+                        )}
+                        {activeTool === "matcher" && (
+                          <UniversityMatcher lead={lead} />
+                        )}
+                        {activeTool === "quiz" && <CountryQuiz lead={lead} />}
+                        {activeTool === "eligibility" && (
+                          <EligibilityChecker lead={lead} />
+                        )}
+                        {activeTool === "budget" && (
+                          <BudgetCalculator lead={lead} />
+                        )}
+                      </>
+                    ) : (
+                      <LeadForm
+                        toolTitle={activeToolMeta.title}
+                        onSubmit={handleLeadSubmit}
+                      />
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
 
       {/* Admission Nuances Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="relative z-10 py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
@@ -2709,10 +2603,10 @@ export default function AiTools() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center">
+                    <div className="w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center shrink-0">
                       <span className="text-gold font-bold text-sm">SEP</span>
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <div className="font-display font-bold text-navy text-lg">
                         September Intake
                       </div>
@@ -2729,12 +2623,12 @@ export default function AiTools() {
                 </div>
                 <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center">
+                    <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
                       <span className="text-blue-700 font-bold text-sm">
                         FEB
                       </span>
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <div className="font-display font-bold text-navy text-lg">
                         February Intake
                       </div>
@@ -2765,8 +2659,8 @@ export default function AiTools() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-green-50 border border-green-200 rounded-2xl p-5">
                   <h4 className="font-semibold text-green-800 mb-3 flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4" /> Direct Admission
-                    Countries
+                    <CheckCircle className="w-4 h-4 shrink-0" /> Direct
+                    Admission Countries
                   </h4>
                   <div className="space-y-1.5">
                     {[
@@ -2777,19 +2671,19 @@ export default function AiTools() {
                     ].map((step) => (
                       <div
                         key={step}
-                        className="flex items-center gap-2 text-sm text-green-900"
+                        className="flex items-start gap-2 text-sm text-green-900"
                       >
-                        <span className="w-5 h-5 bg-green-600 text-white rounded-full text-xs flex items-center justify-center font-bold shrink-0">
+                        <span className="w-5 h-5 bg-green-600 text-white rounded-full text-xs flex items-center justify-center font-bold shrink-0 mt-0.5">
                           ✓
                         </span>
-                        {step}
+                        <span>{step}</span>
                       </div>
                     ))}
                   </div>
                 </div>
                 <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5">
                   <h4 className="font-semibold text-blue-800 mb-3 flex items-center gap-2">
-                    <Info className="w-4 h-4" /> Entrance/Requirements
+                    <Info className="w-4 h-4 shrink-0" /> Entrance/Requirements
                   </h4>
                   <div className="space-y-1.5">
                     {[
@@ -2800,12 +2694,12 @@ export default function AiTools() {
                     ].map((step) => (
                       <div
                         key={step}
-                        className="flex items-center gap-2 text-sm text-blue-900"
+                        className="flex items-start gap-2 text-sm text-blue-900"
                       >
-                        <span className="w-5 h-5 bg-blue-600 text-white rounded-full text-xs flex items-center justify-center font-bold shrink-0">
+                        <span className="w-5 h-5 bg-blue-600 text-white rounded-full text-xs flex items-center justify-center font-bold shrink-0 mt-0.5">
                           i
                         </span>
-                        {step}
+                        <span>{step}</span>
                       </div>
                     ))}
                   </div>
@@ -2818,7 +2712,7 @@ export default function AiTools() {
               <div className="bg-amber-50 border-l-4 border-amber-500 rounded-r-2xl p-6">
                 <div className="flex items-start gap-3">
                   <AlertTriangle className="w-6 h-6 text-amber-600 shrink-0 mt-0.5" />
-                  <div>
+                  <div className="min-w-0">
                     <h3 className="font-display font-bold text-navy text-lg mb-2">
                       Bond / Undertaking Requirements (NMC Mandate)
                     </h3>
@@ -2838,7 +2732,7 @@ export default function AiTools() {
                       ].map((point) => (
                         <li key={point} className="flex items-start gap-2">
                           <CheckCircle className="w-4 h-4 text-green-600 shrink-0 self-start mt-0.5" />
-                          {point}
+                          <span>{point}</span>
                         </li>
                       ))}
                     </ul>
@@ -2848,7 +2742,7 @@ export default function AiTools() {
             </div>
 
             {/* NEET State Cutoffs Table */}
-            <div>
+            <section className="mt-10 pt-8 border-t border-border">
               <div className="flex items-center gap-3 mb-5">
                 <div className="p-2.5 bg-gold/10 rounded-xl">
                   <Target className="w-6 h-6 text-gold" />
@@ -2880,96 +2774,86 @@ export default function AiTools() {
               <p className="text-xs text-muted-foreground mb-2 md:hidden">
                 ← Scroll to see all states and years
               </p>
-              <div className="rounded-2xl border border-border shadow-sm mb-6 overflow-hidden">
-                <div className="overflow-x-auto">
-                  <table className="w-full text-xs md:text-sm border-separate border-spacing-0">
-                    <thead>
-                      <tr className="bg-navy text-white">
-                        <th className="text-left px-3 py-3 font-semibold sticky left-0 bg-navy z-[20] min-w-[130px]">
-                          State
-                        </th>
-                        <th
-                          className="text-center px-3 py-3 font-semibold"
-                          colSpan={4}
+              <div className="overflow-x-auto rounded-xl border border-border shadow-sm mb-6">
+                <table className="w-full text-xs md:text-sm border-separate border-spacing-0">
+                  <thead>
+                    <tr className="bg-navy text-white">
+                      <th className="text-left px-3 py-3 font-semibold sticky left-0 bg-navy z-[20] min-w-[130px] border-r border-white/20 shadow-[2px_0_4px_rgba(0,0,0,0.1)]">
+                        State
+                      </th>
+                      <th
+                        className="text-center px-3 py-3 font-semibold"
+                        colSpan={4}
+                      >
+                        2023 (Approx. Range)
+                      </th>
+                      <th
+                        className="text-center px-3 py-3 font-semibold"
+                        colSpan={4}
+                      >
+                        2024 (Approx. Range)
+                      </th>
+                      <th
+                        className="text-center px-3 py-3 font-semibold"
+                        colSpan={4}
+                      >
+                        2025 (Approx. Range)
+                      </th>
+                    </tr>
+                    <tr className="bg-[#1b2f5e] text-gold/90 text-xs">
+                      <th className="sticky left-0 bg-[#1b2f5e] px-3 py-2 z-20 border-r border-[#2a4070] shadow-[2px_0_4px_rgba(0,0,0,0.1)]" />
+                      <th className="px-3 py-2">Gen</th>
+                      <th className="px-3 py-2">OBC</th>
+                      <th className="px-3 py-2">SC</th>
+                      <th className="px-3 py-2">ST</th>
+                      <th className="px-3 py-2">Gen</th>
+                      <th className="px-3 py-2">OBC</th>
+                      <th className="px-3 py-2">SC</th>
+                      <th className="px-3 py-2">ST</th>
+                      <th className="px-3 py-2">Gen</th>
+                      <th className="px-3 py-2">OBC</th>
+                      <th className="px-3 py-2">SC</th>
+                      <th className="px-3 py-2">ST</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {neetStateCutoffs.map((row, i) => (
+                      <tr
+                        key={row.state}
+                        className={i % 2 === 0 ? "bg-white" : "bg-secondary"}
+                      >
+                        <td
+                          className={`px-3 py-2.5 font-semibold text-navy sticky left-0 z-[10] border-r border-border ${i % 2 === 0 ? "bg-white" : "bg-secondary"}`}
                         >
-                          2023 (Approx. Range)
-                        </th>
-                        <th
-                          className="text-center px-3 py-3 font-semibold"
-                          colSpan={4}
-                        >
-                          2024 (Approx. Range)
-                        </th>
-                        <th
-                          className="text-center px-3 py-3 font-semibold"
-                          colSpan={4}
-                        >
-                          2025 (Approx. Range)
-                        </th>
+                          {row.state}
+                        </td>
+                        <td className="px-3 py-2.5 text-center">{row.g23}</td>
+                        <td className="px-3 py-2.5 text-center">{row.o23}</td>
+                        <td className="px-3 py-2.5 text-center">{row.sc23}</td>
+                        <td className="px-3 py-2.5 text-center">{row.st23}</td>
+                        <td className="px-3 py-2.5 text-center">{row.g24}</td>
+                        <td className="px-3 py-2.5 text-center">{row.o24}</td>
+                        <td className="px-3 py-2.5 text-center">{row.sc24}</td>
+                        <td className="px-3 py-2.5 text-center">{row.st24}</td>
+                        <td className="px-3 py-2.5 text-center font-medium">
+                          {row.g25}
+                        </td>
+                        <td className="px-3 py-2.5 text-center font-medium">
+                          {row.o25}
+                        </td>
+                        <td className="px-3 py-2.5 text-center font-medium">
+                          {row.sc25}
+                        </td>
+                        <td className="px-3 py-2.5 text-center font-medium">
+                          {row.st25}
+                        </td>
                       </tr>
-                      <tr className="bg-[#1b2f5e] text-gold/90 text-xs">
-                        <th className="sticky left-0 bg-[#1b2f5e] px-3 py-2 z-[20]" />
-                        <th className="px-3 py-2">Gen</th>
-                        <th className="px-3 py-2">OBC</th>
-                        <th className="px-3 py-2">SC</th>
-                        <th className="px-3 py-2">ST</th>
-                        <th className="px-3 py-2">Gen</th>
-                        <th className="px-3 py-2">OBC</th>
-                        <th className="px-3 py-2">SC</th>
-                        <th className="px-3 py-2">ST</th>
-                        <th className="px-3 py-2">Gen</th>
-                        <th className="px-3 py-2">OBC</th>
-                        <th className="px-3 py-2">SC</th>
-                        <th className="px-3 py-2">ST</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {neetStateCutoffs.map((row, i) => (
-                        <tr
-                          key={row.state}
-                          className={i % 2 === 0 ? "bg-white" : "bg-secondary"}
-                        >
-                          <td
-                            className={`px-3 py-2.5 font-semibold text-navy sticky left-0 z-[10] ${i % 2 === 0 ? "bg-white" : "bg-gray-50"}`}
-                          >
-                            {row.state}
-                          </td>
-                          <td className="px-3 py-2.5 text-center">{row.g23}</td>
-                          <td className="px-3 py-2.5 text-center">{row.o23}</td>
-                          <td className="px-3 py-2.5 text-center">
-                            {row.sc23}
-                          </td>
-                          <td className="px-3 py-2.5 text-center">
-                            {row.st23}
-                          </td>
-                          <td className="px-3 py-2.5 text-center">{row.g24}</td>
-                          <td className="px-3 py-2.5 text-center">{row.o24}</td>
-                          <td className="px-3 py-2.5 text-center">
-                            {row.sc24}
-                          </td>
-                          <td className="px-3 py-2.5 text-center">
-                            {row.st24}
-                          </td>
-                          <td className="px-3 py-2.5 text-center font-medium">
-                            {row.g25}
-                          </td>
-                          <td className="px-3 py-2.5 text-center font-medium">
-                            {row.o25}
-                          </td>
-                          <td className="px-3 py-2.5 text-center font-medium">
-                            {row.sc25}
-                          </td>
-                          <td className="px-3 py-2.5 text-center font-medium">
-                            {row.st25}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                    ))}
+                  </tbody>
+                </table>
               </div>
               <div className="bg-navy text-white rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6 justify-between">
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <p className="font-semibold text-white mb-1">
                     🎯 If your NEET score is below the cutoff for government
                     colleges in your state…
@@ -2990,13 +2874,13 @@ export default function AiTools() {
                   </Button>
                 </Link>
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </section>
 
       {/* Counselling CTA */}
-      <section className="py-16 bg-navy text-white text-center">
+      <section className="relative z-10 py-16 bg-navy text-white text-center">
         <div className="container mx-auto px-4">
           <MapPin className="w-10 h-10 text-gold mx-auto mb-4" />
           <h2 className="text-3xl font-display font-bold mb-4">
