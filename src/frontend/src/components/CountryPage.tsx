@@ -17,6 +17,7 @@ export interface University {
   students: string;
   fee: string;
   recognition: string[];
+  logo?: string;
 }
 
 export interface CountryData {
@@ -25,6 +26,7 @@ export interface CountryData {
   tagline: string;
   description: string;
   gradient: string;
+  heroImage?: string;
   stats: { label: string; value: string }[];
   universities: University[];
   highlights: string[];
@@ -39,6 +41,8 @@ export interface CountryData {
 interface Props {
   data: CountryData;
   featured?: boolean;
+  /** Skip the default pt-16/pt-20 top padding — use when a banner above already provides navbar clearance */
+  noPaddingTop?: boolean;
 }
 
 const infoCards = [
@@ -48,24 +52,37 @@ const infoCards = [
   { icon: Users, key: "climate" as const, label: "Climate" },
 ];
 
-export default function CountryPage({ data, featured }: Props) {
+export default function CountryPage({ data, featured, noPaddingTop }: Props) {
   return (
-    <main className="pt-16 md:pt-20">
-      <section
-        className={`relative py-24 bg-gradient-to-br ${data.gradient} text-white overflow-hidden`}
-      >
-        <div className="absolute inset-0 bg-navy/70" />
-        <div className="relative container mx-auto px-4 text-center">
-          <div className="text-6xl mb-4">{data.flag}</div>
+    <main className={noPaddingTop ? "" : "pt-16 md:pt-20"}>
+      <section className="relative py-24 text-white overflow-hidden min-h-[420px] flex items-center">
+        {/* Background image */}
+        {data.heroImage && (
+          <img
+            src={data.heroImage}
+            alt={`MBBS in ${data.name}`}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        )}
+        {/* Single overlay for text readability with image visible on right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/85 via-navy/60 to-transparent z-[1]" />
+        <div className="relative z-[2] container mx-auto px-4 text-center">
+          <div className="text-6xl mb-4 drop-shadow-lg">{data.flag}</div>
           {featured && (
             <Badge className="bg-gold text-navy mb-3 font-semibold">
               ⭐ Featured Destination
             </Badge>
           )}
-          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
+          <h1
+            className="text-4xl md:text-5xl font-display font-bold mb-4 drop-shadow-lg"
+            style={{ textShadow: "0 2px 8px rgba(0,0,0,0.8)" }}
+          >
             MBBS in {data.name}
           </h1>
-          <p className="text-xl text-white/85 max-w-2xl mx-auto mb-8">
+          <p
+            className="text-xl text-white/95 max-w-2xl mx-auto mb-8"
+            style={{ textShadow: "0 1px 6px rgba(0,0,0,0.7)" }}
+          >
             {data.tagline}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
@@ -157,15 +174,27 @@ export default function CountryPage({ data, featured }: Props) {
                 data-ocid={`universities.item.${i + 1}`}
               >
                 <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <CardTitle className="text-navy text-lg">
-                      {uni.name}
-                    </CardTitle>
-                    <Star className="w-5 h-5 text-gold shrink-0" />
+                  <div className="flex items-start gap-3">
+                    {uni.logo ? (
+                      <img
+                        src={uni.logo}
+                        alt={`${uni.name} logo`}
+                        className="w-14 h-14 object-contain rounded-lg border border-border bg-white p-1 shrink-0"
+                      />
+                    ) : (
+                      <div className="w-14 h-14 rounded-lg border border-border bg-gradient-to-br from-navy/10 to-gold/20 flex items-center justify-center shrink-0">
+                        <Star className="w-6 h-6 text-gold" />
+                      </div>
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <CardTitle className="text-navy text-base leading-tight">
+                        {uni.name}
+                      </CardTitle>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        Est. {uni.established} · {uni.students} students
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-sm text-muted-foreground">
-                    Est. {uni.established} · {uni.students} students
-                  </p>
                 </CardHeader>
                 <CardContent>
                   <div className="flex justify-between mb-3 text-sm">

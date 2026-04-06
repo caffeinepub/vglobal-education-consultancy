@@ -7,6 +7,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
+import SEOHead from "../components/SEOHead";
 
 const faqs = [
   {
@@ -62,6 +63,40 @@ const faqs = [
 export default function Faq() {
   return (
     <main className="pt-16 md:pt-20">
+      <SEOHead
+        title="FAQ - MBBS Abroad | Common Questions Answered | VGLOBAL"
+        description="Frequently asked questions about studying MBBS abroad - eligibility, fees, NEET, NMC recognition, FMGE, visa process, and more. Get answers from VGLOBAL experts in Jaipur."
+        keywords="MBBS abroad FAQ, NEET MBBS questions, FMGE exam India, NMC recognized universities list, MBBS fees abroad, visa MBBS"
+        canonicalPath="/faq"
+        schemaType="FAQPage"
+        faqItems={[
+          {
+            question: "What is the eligibility for MBBS abroad?",
+            answer:
+              "You need 50% marks in PCB in Class 12 and a valid NEET score (50th percentile for general category, 40th for SC/ST/OBC).",
+          },
+          {
+            question: "Is NEET compulsory for MBBS abroad?",
+            answer:
+              "Yes. NEET qualification is mandatory for all Indian students seeking admission to foreign medical colleges as per NMC regulations.",
+          },
+          {
+            question: "Are foreign MBBS degrees valid in India?",
+            answer:
+              "Yes, if from NMC-recognized universities. After completing MBBS, you must clear the NExT/FMGE screening exam to practice in India.",
+          },
+          {
+            question: "What is the cost of MBBS abroad?",
+            answer:
+              "Fees range from $3,000 to $7,000 per year. Total 6-year cost ranges from ₹18 lakhs (Kyrgyzstan) to ₹42 lakhs (Georgia), much less than Indian private colleges.",
+          },
+          {
+            question: "Which country is best for MBBS abroad?",
+            answer:
+              "Kyrgyzstan is most affordable and popular. Russia and Georgia offer European-standard education. Philippines is great for English-medium with US curriculum.",
+          },
+        ]}
+      />
       <section className="py-20 bg-gradient-to-br from-navy to-navy-dark text-white">
         <div className="container mx-auto px-4 text-center">
           <Badge className="bg-gold/20 text-gold border-gold/30 mb-4">

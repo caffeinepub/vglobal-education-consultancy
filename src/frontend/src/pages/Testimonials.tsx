@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, Star } from "lucide-react";
 import type { Testimonial } from "../backend";
+import SEOHead from "../components/SEOHead";
 import { useTestimonials } from "../hooks/useQueries";
 
 const staticTestimonials: Testimonial[] = [
@@ -9,21 +10,21 @@ const staticTestimonials: Testimonial[] = [
     studentName: "Priya Sharma",
     country: "Kyrgyzstan",
     university: "Osh State Medical University",
-    text: "VGLOBAL guided me through every step of the admission process. Their counsellors are very knowledgeable and the visa process was smooth. I am now in my 3rd year and couldn't be happier!",
+    text: "Choosing VGLOBAL was the turning point in my life. The team handled everything from my application to hostel booking. I'm now completing my 3rd year at Osh State Medical University and couldn't be happier!",
     rating: BigInt(5),
   },
   {
     studentName: "Rahul Mehta",
     country: "Russia",
     university: "Kazan Federal University",
-    text: "Excellent service! VGLOBAL helped me get admission to one of Russia's top medical universities. Their pre-departure guidance was very helpful. Highly recommend to all NEET aspirants.",
+    text: "I was confused about which country to choose for MBBS. VGLOBAL's counsellors spent hours with me explaining pros and cons. Now I'm studying at Kazan Federal University — absolutely no regrets.",
     rating: BigInt(5),
   },
   {
     studentName: "Anjali Patel",
     country: "Georgia",
     university: "Tbilisi State Medical University",
-    text: "Professional team, transparent process, and genuine care for students. VGLOBAL is the most trustworthy consultancy in Jaipur. My parents are very happy with the decision.",
+    text: "What sets VGLOBAL apart is their honesty. No false promises, no hidden fees. They told me exactly what to expect and delivered everything they promised. Highly recommend to every NEET aspirant.",
     rating: BigInt(5),
   },
   {
@@ -111,15 +112,27 @@ export default function Testimonials() {
 
   return (
     <main className="pt-16 md:pt-20">
-      <section className="py-20 bg-gradient-to-br from-navy to-navy-dark text-white">
-        <div className="container mx-auto px-4 text-center">
+      <SEOHead
+        title="Student Testimonials | MBBS Abroad Success Stories | VGLOBAL Jaipur"
+        description="Read real success stories from 500+ Indian students who studied MBBS abroad with VGLOBAL. Honest reviews from students studying in Kyrgyzstan, Russia, Georgia, Kazakhstan, and Philippines."
+        keywords="VGLOBAL testimonials, MBBS abroad student reviews, MBBS Kyrgyzstan reviews, VGLOBAL success stories, study abroad reviews India"
+        canonicalPath="/testimonials"
+      />
+      <section className="relative py-20 text-white overflow-hidden">
+        <img
+          src="/assets/generated/testimonials-hero.dim_1200x600.jpg"
+          alt="Happy MBBS students abroad"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/60 to-navy/30 z-[1]" />
+        <div className="relative z-[2] container mx-auto px-4 text-center">
           <Badge className="bg-gold/20 text-gold border-gold/30 mb-4">
             Student Reviews
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 drop-shadow-lg">
             What Our Students Say
           </h1>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">
+          <p className="text-white/90 text-lg max-w-2xl mx-auto">
             500+ happy students and counting. Read what our students say about
             studying abroad with VGLOBAL.
           </p>

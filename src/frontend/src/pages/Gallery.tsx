@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import SEOHead from "../components/SEOHead";
 
 const galleryItems = [
   {
@@ -75,6 +76,12 @@ const categories = [
 export default function Gallery() {
   return (
     <main className="pt-16 md:pt-20">
+      <SEOHead
+        title="VGLOBAL Gallery | Student Events & Campus Photos | MBBS Abroad"
+        description="Photos from VGLOBAL student orientation events, university campus visits, student success celebrations, and orientation sessions for MBBS abroad students."
+        keywords="VGLOBAL gallery, MBBS abroad student photos, Jaipur MBBS consultancy events"
+        canonicalPath="/gallery"
+      />
       <section className="py-20 bg-gradient-to-br from-navy to-navy-dark text-white">
         <div className="container mx-auto px-4 text-center">
           <Badge className="bg-gold/20 text-gold border-gold/30 mb-4">

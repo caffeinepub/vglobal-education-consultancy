@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import { AlertCircle, CheckCircle } from "lucide-react";
+import SEOHead from "../components/SEOHead";
 
 const criteria = [
   {
@@ -96,15 +97,27 @@ const countrySpecific = [
 export default function Eligibility() {
   return (
     <main className="pt-16 md:pt-20">
-      <section className="py-20 bg-gradient-to-br from-navy to-navy-dark text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative py-20 text-white overflow-hidden">
+        <SEOHead
+          title="MBBS Abroad Eligibility 2026 | NEET Requirement | Age Limit | VGLOBAL"
+          description="MBBS abroad eligibility criteria for Indian students: minimum 50% marks in PCB, NEET qualification, age 17+, valid passport. Check if you qualify for MBBS abroad with VGLOBAL."
+          keywords="MBBS abroad eligibility, NEET required MBBS abroad, MBBS eligibility India, PCB marks MBBS abroad"
+          canonicalPath="/eligibility"
+        />
+        <img
+          src="/assets/generated/eligibility-hero.dim_1200x600.jpg"
+          alt="MBBS eligibility criteria"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/60 to-navy/30 z-[1]" />
+        <div className="relative z-[2] container mx-auto px-4 text-center">
           <Badge className="bg-gold/20 text-gold border-gold/30 mb-4">
             Eligibility
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 drop-shadow-lg">
             Eligibility Criteria for MBBS Abroad
           </h1>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">
+          <p className="text-white/90 text-lg max-w-2xl mx-auto">
             Check if you qualify to study MBBS at NMC-recognized universities
             abroad.
           </p>
@@ -173,7 +186,7 @@ export default function Eligibility() {
                 {countrySpecific.map((c) => (
                   <tr
                     key={c.country}
-                    className="odd:bg-white even:bg-secondary"
+                    className="odd:bg-white even:bg-secondary border-b border-border"
                   >
                     <td className="px-5 py-3 font-medium text-navy">
                       {c.country}

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "@tanstack/react-router";
 import { Award, CheckCircle } from "lucide-react";
+import SEOHead from "../components/SEOHead";
 
 const scholarships = [
   {
@@ -53,15 +54,27 @@ const scholarships = [
 export default function Scholarships() {
   return (
     <main className="pt-16 md:pt-20">
-      <section className="py-20 bg-gradient-to-br from-navy to-navy-dark text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative py-20 text-white overflow-hidden">
+        <SEOHead
+          title="Scholarships for MBBS Abroad | Government & University Grants | VGLOBAL"
+          description="Scholarships available for MBBS abroad: Russian Government Scholarship, ICCR Scholarship, Chinese Government CSC Scholarship, University merit scholarships. Apply through VGLOBAL Jaipur."
+          keywords="MBBS abroad scholarships, Indian students scholarships abroad, government scholarship MBBS, ICCR scholarship MBBS, Russia scholarship India"
+          canonicalPath="/scholarships"
+        />
+        <img
+          src="/assets/generated/scholarships-hero.dim_1200x600.jpg"
+          alt="Scholarships for MBBS abroad students"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/60 to-navy/30 z-[1]" />
+        <div className="relative z-[2] container mx-auto px-4 text-center">
           <Badge className="bg-gold/20 text-gold border-gold/30 mb-4">
             Scholarships
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 drop-shadow-lg">
             Scholarships for MBBS Abroad
           </h1>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">
+          <p className="text-white/90 text-lg max-w-2xl mx-auto">
             Various scholarship opportunities available for deserving Indian
             students pursuing MBBS abroad.
           </p>

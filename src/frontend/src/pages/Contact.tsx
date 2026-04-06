@@ -8,6 +8,7 @@ import { CheckCircle, Clock, Loader2, Mail, MapPin, Phone } from "lucide-react";
 import { useState } from "react";
 import { SiWhatsapp } from "react-icons/si";
 import { toast } from "sonner";
+import SEOHead from "../components/SEOHead";
 import { useSubmitEnquiry } from "../hooks/useQueries";
 
 export default function Contact() {
@@ -37,22 +38,36 @@ export default function Contact() {
       },
       {
         onSuccess: () => setSubmitted(true),
-        onError: () => toast.error("Failed to send. Please call us directly."),
+        onError: () =>
+          toast.error("Failed to send. Please call us at +91-7230032949."),
       },
     );
   };
 
   return (
     <main className="pt-16 md:pt-20">
-      <section className="py-20 bg-gradient-to-br from-navy to-navy-dark text-white">
-        <div className="container mx-auto px-4 text-center">
+      <SEOHead
+        title="Contact VGLOBAL | MBBS Abroad Consultancy Jaipur | +91-7230032949"
+        description="Contact VGLOBAL for free MBBS abroad counselling. Office: A7, A8, 1st Floor, Ajmera Empire Complex, Gopalpura Bypass, Jaipur. Phone: +91-7230032949. Email: enquiry@vglobal.online"
+        keywords="contact VGLOBAL, MBBS consultancy Jaipur address, VGLOBAL phone number, free MBBS counselling Jaipur"
+        canonicalPath="/contact"
+        schemaType="Organization"
+      />
+      <section className="relative py-20 text-white overflow-hidden">
+        <img
+          src="/assets/generated/admissions-process.dim_1200x600.jpg"
+          alt="Contact VGLOBAL office"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/60 to-navy/30 z-[1]" />
+        <div className="relative z-[2] container mx-auto px-4 text-center">
           <Badge className="bg-gold/20 text-gold border-gold/30 mb-4">
             Contact
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 drop-shadow-lg">
             Contact VGLOBAL
           </h1>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">
+          <p className="text-white/90 text-lg max-w-2xl mx-auto">
             We're here to help. Reach us at our Jaipur office or fill the form
             below.
           </p>
@@ -76,11 +91,11 @@ export default function Contact() {
                       Office Address
                     </div>
                     <p className="text-muted-foreground">
-                      Near SMS Medical College
+                      A7, A8, 1st Floor, Ajmera Empire Complex
                       <br />
-                      Jaipur, Rajasthan 302004
+                      10 B Scheme, Near Triveni Nagar Circle
                       <br />
-                      India
+                      Gopalpura Bypass, Jaipur, Rajasthan 302017
                     </p>
                   </div>
                 </div>
@@ -91,10 +106,10 @@ export default function Contact() {
                   <div>
                     <div className="font-semibold text-navy mb-1">Phone</div>
                     <a
-                      href="tel:+919876543210"
+                      href="tel:+917230032949"
                       className="text-muted-foreground hover:text-gold transition-colors"
                     >
-                      +91-9876543210
+                      +91 - 7230032949
                     </a>
                   </div>
                 </div>
@@ -105,12 +120,12 @@ export default function Contact() {
                   <div>
                     <div className="font-semibold text-navy mb-1">WhatsApp</div>
                     <a
-                      href="https://wa.me/919876543210"
+                      href="https://wa.me/917230032949"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-muted-foreground hover:text-gold transition-colors"
                     >
-                      +91-9876543210
+                      +91 - 7230032949
                     </a>
                   </div>
                 </div>
@@ -121,10 +136,10 @@ export default function Contact() {
                   <div>
                     <div className="font-semibold text-navy mb-1">Email</div>
                     <a
-                      href="mailto:info@vglobal.in"
+                      href="mailto:enquiry@vglobal.online"
                       className="text-muted-foreground hover:text-gold transition-colors"
                     >
-                      info@vglobal.in
+                      enquiry@vglobal.online
                     </a>
                   </div>
                 </div>
@@ -150,9 +165,9 @@ export default function Contact() {
                 <div className="text-center">
                   <MapPin className="w-8 h-8 text-gold mx-auto mb-2" />
                   <p className="text-muted-foreground text-sm">
-                    Near SMS Medical College
+                    Ajmera Empire Complex, Gopalpura Bypass
                     <br />
-                    Jaipur, Rajasthan
+                    Jaipur, Rajasthan 302017
                   </p>
                 </div>
               </div>
@@ -172,7 +187,7 @@ export default function Contact() {
                     <p className="text-green-700">
                       We've received your message and will get back to you
                       within 24 hours. For urgent queries, please call
-                      +91-9876543210.
+                      +91-7230032949.
                     </p>
                   </CardContent>
                 </Card>

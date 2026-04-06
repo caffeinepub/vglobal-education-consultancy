@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle } from "lucide-react";
+import SEOHead from "../components/SEOHead";
 
 const countries = [
   {
@@ -69,17 +70,29 @@ const mbbsPoints = [
 export default function MbbsAbroad() {
   return (
     <main className="pt-16 md:pt-20">
-      <section className="py-20 bg-gradient-to-br from-navy to-navy-dark text-white">
-        <div className="container mx-auto px-4 text-center">
+      <SEOHead
+        title="MBBS Abroad 2026 | Complete Guide for Indian Students | VGLOBAL"
+        description="Complete guide to MBBS abroad for Indian students in 2026. Top 9 countries, NMC-recognized universities, total fees, eligibility, NEET requirements. Get free counselling from VGLOBAL, Jaipur's most trusted MBBS abroad consultancy."
+        keywords="MBBS abroad 2026, MBBS abroad India, foreign MBBS guide, NMC recognized universities, study medicine abroad India, NEET MBBS abroad"
+        canonicalPath="/mbbs-abroad"
+      />
+      <section className="relative py-20 text-white overflow-hidden min-h-[400px] flex items-center">
+        <img
+          src="/assets/generated/mbbs-abroad-hero.dim_1200x600.jpg"
+          alt="MBBS abroad for Indian students - complete guide 2026"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/60 to-navy/30 z-[1]" />
+        <div className="relative z-[2] container mx-auto px-4 text-center w-full">
           <Badge className="bg-gold/20 text-gold border-gold/30 mb-4">
-            MBBS Abroad
+            MBBS Abroad 2026
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
-            MBBS Abroad Overview
+          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 drop-shadow-lg">
+            MBBS Abroad for Indian Students
           </h1>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">
-            Everything you need to know about pursuing MBBS at recognized
-            universities abroad.
+          <p className="text-white/90 text-lg max-w-2xl mx-auto drop-shadow-md">
+            Complete guide to studying MBBS abroad — top countries, fees,
+            eligibility, and why VGLOBAL is your best partner.
           </p>
         </div>
       </section>
@@ -146,7 +159,9 @@ export default function MbbsAbroad() {
             {countries.map((c, i) => (
               <Card
                 key={c.name}
-                className={`hover:shadow-lg transition-all border-border hover:border-gold ${c.featured ? "ring-2 ring-gold" : ""}`}
+                className={`hover:shadow-lg transition-all border-border hover:border-gold ${
+                  c.featured ? "ring-2 ring-gold" : ""
+                }`}
                 data-ocid={`mbbs.countries.item.${i + 1}`}
               >
                 <CardContent className="p-6">

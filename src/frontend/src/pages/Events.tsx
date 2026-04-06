@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, MapPin } from "lucide-react";
 import type { Event } from "../backend";
+import SEOHead from "../components/SEOHead";
 import { useEvents } from "../hooks/useQueries";
 
 const staticEvents: Event[] = [
@@ -13,17 +14,17 @@ const staticEvents: Event[] = [
     location: "Hotel Clarks Amer, Jaipur, Rajasthan",
   },
   {
-    title: "Kyrgyzstan University Fair 2024",
+    title: "Kyrgyzstan University Fair 2026",
     date: BigInt((Date.now() + 14 * 86400000) * 1000000),
     description:
       "Representatives from Osh State Medical University, International School of Medicine, and Kyrgyz State Medical Academy will be present. Direct interaction with university officials.",
     location: "VGLOBAL Office, Near SMS Medical College, Jaipur",
   },
   {
-    title: "Pre-Departure Orientation — Batch September 2024",
+    title: "Pre-Departure Orientation — Batch September 2026",
     date: BigInt((Date.now() + 21 * 86400000) * 1000000),
     description:
-      "Mandatory orientation for all students departing for the September 2024 intake. Topics: travel tips, accommodation, bank accounts, cultural adjustment, academic preparation.",
+      "Mandatory orientation for all students departing for the September 2026 intake. Topics: travel tips, accommodation, bank accounts, cultural adjustment, academic preparation.",
     location: "VGLOBAL Conference Hall, Jaipur",
   },
   {
@@ -48,6 +49,12 @@ export default function Events() {
 
   return (
     <main className="pt-16 md:pt-20">
+      <SEOHead
+        title="MBBS Abroad Events & Seminars | VGLOBAL Jaipur | Free Workshops"
+        description="Upcoming MBBS abroad seminars, free counselling camps, university admission workshops organized by VGLOBAL in Jaipur. Register for free admission guidance events."
+        keywords="MBBS abroad events, VGLOBAL seminar Jaipur, free MBBS workshop, admission guidance event"
+        canonicalPath="/events"
+      />
       <section className="py-20 bg-gradient-to-br from-navy to-navy-dark text-white">
         <div className="container mx-auto px-4 text-center">
           <Badge className="bg-gold/20 text-gold border-gold/30 mb-4">

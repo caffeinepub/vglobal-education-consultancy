@@ -1,96 +1,75 @@
-import { Badge } from "@/components/ui/badge";
 import CountryPage from "../components/CountryPage";
 import type { CountryData } from "../components/CountryPage";
 
 const data: CountryData = {
   name: "Ukraine",
   flag: "🇺🇦",
-  tagline:
-    "European Medical Education with a Long History of Welcoming Indian Students",
+  tagline: "European Medical Education with a Long Legacy for Indian Students",
   description:
-    "Ukraine was historically one of the most popular MBBS destinations for Indian students, known for its high-quality medical education and affordable fees. Please note: Due to the ongoing conflict (since 2022), VGLOBAL advises students to monitor the situation closely. We assist students who wish to explore options as well as those who need to transfer from Ukrainian universities to other institutions.",
-  gradient: "from-blue-600 via-yellow-500/20 to-navy",
+    "Ukraine has been one of the most sought-after MBBS destinations for Indian students for decades. Ukrainian medical universities are globally recognized and offer high-quality English-medium programs. Please note that due to the ongoing conflict, VGLOBAL advises students to consider current geopolitical conditions. We provide updated guidance on university transfers and alternative options.",
+  gradient: "from-blue-700 via-yellow-600 to-navy",
+  heroImage: "/assets/generated/ukraine-hero.dim_1200x600.jpg",
   stats: [
-    { label: "Annual Fees", value: "$3,000-5,000" },
-    { label: "Partner Universities", value: "8+" },
-    { label: "Historical Students", value: "20,000+" },
+    { label: "Annual Fees", value: "$3,000-4,500" },
+    { label: "Partner Universities", value: "6+" },
+    { label: "Indian Students", value: "18,000+" },
     { label: "Duration", value: "6 Years" },
   ],
   universities: [
     {
-      name: "Bogomolets National Medical University",
-      established: "1841",
-      students: "13,000+",
-      fee: "$4,500/yr",
-      recognition: ["NMC", "WHO", "ECFMG"],
-    },
-    {
       name: "Kharkiv National Medical University",
       established: "1805",
-      students: "8,000+",
+      students: "7,000+",
       fee: "$4,000/yr",
+      recognition: ["NMC", "WHO", "ECFMG"],
+      logo: "/assets/generated/logo-knmu.dim_200x200.png",
+    },
+    {
+      name: "Bogomolets National Medical University",
+      established: "1841",
+      students: "10,000+",
+      fee: "$4,500/yr",
+      recognition: ["NMC", "WHO", "FAIMER"],
+      logo: "/assets/generated/logo-bogomolets.dim_200x200.png",
+    },
+    {
+      name: "Ivano-Frankivsk National Medical University",
+      established: "1945",
+      students: "5,000+",
+      fee: "$3,500/yr",
       recognition: ["NMC", "WHO"],
     },
     {
-      name: "Lviv National Medical University",
-      established: "1784",
+      name: "Vinnitsa National Medical University",
+      established: "1921",
       students: "6,000+",
-      fee: "$4,000/yr",
-      recognition: ["NMC", "WHO", "WFME"],
-    },
-    {
-      name: "Zaporizhzhia State Medical University",
-      established: "1903",
-      students: "4,000+",
-      fee: "$3,500/yr",
+      fee: "$3,000/yr",
       recognition: ["NMC", "WHO"],
     },
   ],
   highlights: [
-    "Historically top choice for Indian students",
-    "European-quality medical education",
+    "Long tradition of quality medical education",
+    "NMC-recognized universities",
     "English-medium instruction",
-    "Strong FMGE success rate historically",
-    "Transfer options available for current students",
-    "VGLOBAL assists with university transfers",
+    "European-standard infrastructure",
+    "18,000+ Indian students alumni",
+    "VGLOBAL helps with university transfers",
   ],
-  feeRange: "$3,000 - $5,000/yr",
+  feeRange: "$3,000 - $4,500/yr",
   duration: "6 Years",
   language: "English/Ukrainian",
   climate: "Temperate",
-  visa: "For current students or those planning to study: Ukrainian Student Visa requires admission letter, passport, and financial documents. VGLOBAL strongly recommends consulting with us for the latest situation updates before applying.",
+  visa: "Ukraine student visa requires university admission letter, valid passport, and financial documents. VGLOBAL provides the latest guidance on current admissions and university transfer options for students affected by conflict.",
   whyChoose: [
-    "Historically prestigious medical universities",
-    "European standard medical education",
-    "NMC-recognized programs",
+    "Decades of proven medical education",
+    "NMC-recognized degrees valid in India",
     "English-medium instruction",
-    "VGLOBAL assists with transfer if needed",
-    "Strong alumni network in India",
+    "Affordable fees",
+    "European-standard teaching hospitals",
+    "VGLOBAL assists with current options",
   ],
 };
 
 export default function Ukraine() {
-  return (
-    <>
-      <div className="bg-amber-50 border-b border-amber-200 pt-16 md:pt-20">
-        <div className="container mx-auto px-4 py-4">
-          <Badge className="bg-amber-100 text-amber-800 border-amber-300">
-            ⚠️ Important Notice
-          </Badge>
-          <p className="text-amber-800 text-sm mt-2">
-            Due to the ongoing conflict in Ukraine (since February 2022), new
-            admissions are currently limited. Students already enrolled have
-            been advised to continue studies online or transfer. VGLOBAL is
-            actively assisting affected students with university transfers to
-            Kyrgyzstan, Russia, and Georgia.{" "}
-            <strong>
-              Please contact us for the latest updates before making any
-              decisions.
-            </strong>
-          </p>
-        </div>
-      </div>
-      <CountryPage data={data} />
-    </>
-  );
+  return <CountryPage data={data} />;
 }

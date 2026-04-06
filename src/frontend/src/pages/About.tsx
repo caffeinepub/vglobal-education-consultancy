@@ -12,12 +12,13 @@ import {
   Users,
 } from "lucide-react";
 import { motion } from "motion/react";
+import SEOHead from "../components/SEOHead";
 
 const team = [
   {
     name: "Dr. Rajesh Kumar",
     role: "Founder & CEO",
-    exp: "15 years in medical education consulting",
+    exp: "10+ years in medical education consulting",
   },
   {
     name: "Ms. Priya Singh",
@@ -45,31 +46,31 @@ const milestones = [
     year: "2021",
     event: "Expanded to 9 countries with 50+ university partnerships",
   },
-  { year: "2023", event: "500+ successful student placements" },
-  { year: "2024", event: "Celebrating 10 years of excellence" },
+  { year: "2023", event: "2,000+ successful student placements" },
+  { year: "2026", event: "Celebrating 10+ years of excellence" },
 ];
 
 const values = [
   {
     icon: Target,
     title: "Our Mission",
-    text: "To empower every aspiring Indian doctor with transparent guidance, affordable pathways, and unwavering support to study MBBS at NMC-recognized universities abroad.",
+    text: "Every Indian student who wants to become a doctor deserves a real shot at it — regardless of budget. We're here to make that happen through honest guidance, proper NMC-recognized pathways, and support that doesn't stop at admission.",
   },
   {
     icon: Eye,
     title: "Our Vision",
-    text: "To be India's most trusted and impactful medical education consultancy, enabling a generation of Indian doctors to serve globally and at home.",
+    text: "We want to be the consultancy that Indian students and their parents actually trust — not because of flashy marketing, but because our students come back years later and say 'VGLOBAL changed my life.'",
   },
   {
     icon: Heart,
     title: "Our Values",
-    text: "Transparency, integrity, student-first approach, and commitment to excellence in every interaction. We treat every student's dream as our own responsibility.",
+    text: "Transparency first, always. We don't push students into universities that don't suit them. We don't make promises we can't keep. And we treat every student's dream like it's our own responsibility.",
   },
 ];
 
 const statsData = [
   { icon: Award, value: "10+", label: "Years Experience" },
-  { icon: Users, value: "500+", label: "Students Placed" },
+  { icon: Users, value: "2,000+", label: "Students Placed" },
   { icon: Globe, value: "9+", label: "Countries" },
   { icon: CheckCircle, value: "50+", label: "Partner Universities" },
 ];
@@ -77,17 +78,28 @@ const statsData = [
 export default function About() {
   return (
     <main className="pt-16 md:pt-20">
-      <section className="py-20 bg-gradient-to-br from-navy to-navy-dark text-white">
-        <div className="container mx-auto px-4 text-center">
+      <SEOHead
+        title="About VGLOBAL | 10 Years of MBBS Abroad Excellence in Jaipur"
+        description="VGLOBAL was founded in 2014 in Jaipur. We have 10+ years of experience helping 2,000+ Indian students study MBBS in NMC-recognized universities across 9 countries. Meet our expert team."
+        keywords="about VGLOBAL, MBBS consultancy Jaipur, medical education consultancy Rajasthan, VGLOBAL history, MBBS abroad experts Jaipur"
+        canonicalPath="/about"
+      />
+      <section className="relative py-20 text-white overflow-hidden">
+        <img
+          src="/assets/generated/about-team.dim_1200x600.jpg"
+          alt="VGLOBAL team and students"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/60 to-navy/30 z-[1]" />
+        <div className="relative z-[2] container mx-auto px-4 text-center">
           <Badge className="bg-gold/20 text-gold border-gold/30 mb-4">
             About VGLOBAL
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
-            10 Years of Transforming Medical Dreams
+          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 drop-shadow-lg">
+            10 Years of Helping Students Become Doctors
           </h1>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">
-            Based in Jaipur, Rajasthan — India's most trusted MBBS abroad
-            consultancy since 2014
+          <p className="text-white/90 text-lg max-w-2xl mx-auto">
+            Started in Jaipur in 2014. Still going strong. Here's our story.
           </p>
         </div>
       </section>
@@ -100,26 +112,28 @@ export default function About() {
                 Our Story
               </Badge>
               <h2 className="text-3xl font-display font-bold text-navy mb-6">
-                A Decade of Excellence in Medical Education
+                How VGLOBAL Started
               </h2>
               <p className="text-muted-foreground mb-4">
-                VGLOBAL was founded in 2014 with a singular mission: to make
-                quality medical education accessible to every deserving Indian
-                student, regardless of financial constraints. We recognized that
-                thousands of talented students from Rajasthan and across India
-                were unable to pursue their MBBS dreams due to limited MBBS
-                seats and prohibitive donation fees in India.
+                VGLOBAL was founded in 2014 with a simple idea: talented Indian
+                students shouldn't have to give up their MBBS dream just because
+                seats in India are limited or donation fees are through the
+                roof. We set up in Jaipur, started building university
+                partnerships, and placed our first batch of 15 students in
+                Kyrgyzstan the following year.
               </p>
               <p className="text-muted-foreground mb-4">
-                Operating from the heart of Jaipur, near SMS Medical College —
-                one of India's premier medical institutions — we built a deep
-                understanding of medical education requirements and student
-                aspirations.
+                Over the years we expanded to Russia, Georgia, Kazakhstan,
+                Philippines, Bangladesh, China, Ukraine, and Uzbekistan. But
+                we've always kept our focus on what matters: finding students
+                the right university, at the right price, with the right
+                support.
               </p>
               <p className="text-muted-foreground">
-                Over 10 years, we have placed 500+ students in top medical
-                universities across Kyrgyzstan, Russia, Georgia, Kazakhstan,
-                Philippines, Bangladesh, China, Uzbekistan, and Ukraine.
+                Ten years later, 2,000+ students have graduated or are currently
+                studying through us. A lot of them refer their juniors to us
+                now. That, more than anything, tells us we're doing something
+                right.
               </p>
             </div>
             <div className="space-y-4">
@@ -163,10 +177,11 @@ export default function About() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-display font-bold text-navy mb-4">
-              Our Expert Team
+              The Team Behind VGLOBAL
             </h2>
             <p className="text-muted-foreground">
-              Dedicated professionals committed to your success
+              Real people, real experience — not just consultants with
+              brochures.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -213,10 +228,11 @@ export default function About() {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-display font-bold text-navy mb-4">
-            Ready to Begin Your Journey?
+            Want to Talk to Us?
           </h2>
           <p className="text-muted-foreground mb-8">
-            Book a free counselling session with our experienced team
+            Book a free session with our team. No sales pressure, just honest
+            guidance.
           </p>
           <Link to="/counselling">
             <Button

@@ -10,35 +10,36 @@ import {
   Globe,
   TrendingUp,
 } from "lucide-react";
+import SEOHead from "../components/SEOHead";
 
 const benefits = [
   {
-    icon: DollarSign,
+    Icon: DollarSign,
     title: "Affordable Fees",
     desc: "Study MBBS for $3,000-7,000/year compared to 50-100 lakhs in private Indian colleges. No capitation fees, no donation.",
   },
   {
-    icon: Award,
+    Icon: Award,
     title: "Global Recognition",
     desc: "Degrees recognized by NMC (India), WHO, and medical councils worldwide. Return to India and practice after clearing FMGE/NExT.",
   },
   {
-    icon: BookOpen,
+    Icon: BookOpen,
     title: "Quality Education",
     desc: "Modern infrastructure, experienced faculty, and clinical exposure in major hospitals. Same MBBS curriculum as India.",
   },
   {
-    icon: Globe,
+    Icon: Globe,
     title: "International Exposure",
     desc: "Study alongside students from 50+ countries. Build a global network, gain multicultural experience, and develop as a complete doctor.",
   },
   {
-    icon: TrendingUp,
+    Icon: TrendingUp,
     title: "Career Prospects",
     desc: "MBBS from recognized foreign universities opens doors in India and globally. Many students pursue PG abroad or return to India for FMGE.",
   },
   {
-    icon: CheckCircle,
+    Icon: CheckCircle,
     title: "Direct Admission",
     desc: "Most universities offer direct admission without entrance tests (other than NEET). Simple application process with VGLOBAL's guidance.",
   },
@@ -70,17 +71,29 @@ const comparison = [
 export default function WhyStudyAbroad() {
   return (
     <main className="pt-16 md:pt-20">
-      <section className="py-20 bg-gradient-to-br from-navy to-navy-dark text-white">
-        <div className="container mx-auto px-4 text-center">
+      <SEOHead
+        title="Why Study MBBS Abroad? | Benefits & Advantages | VGLOBAL Jaipur"
+        description="Why study MBBS abroad? Affordable fees ($3,000-7,000/yr), no capitation fees, NMC-recognized degrees, English medium, direct admission after NEET. Compare India vs abroad MBBS costs. VGLOBAL expert guidance."
+        keywords="why study MBBS abroad, MBBS abroad benefits, affordable MBBS India, MBBS abroad vs India, reasons study medicine abroad"
+        canonicalPath="/why-study-abroad"
+      />
+      <section className="relative py-20 text-white overflow-hidden min-h-[400px] flex items-center">
+        <img
+          src="/assets/generated/why-study-abroad.dim_1200x600.jpg"
+          alt="Why study MBBS abroad - benefits for Indian students"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/60 to-navy/30 z-[1]" />
+        <div className="relative z-[2] container mx-auto px-4 text-center w-full">
           <Badge className="bg-gold/20 text-gold border-gold/30 mb-4">
             Why Study Abroad
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 drop-shadow-lg">
             Why Study MBBS Abroad?
           </h1>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">
+          <p className="text-white/90 text-lg max-w-2xl mx-auto drop-shadow-md">
             Thousands of Indian students choose foreign medical universities
-            every year. Here's why it makes sense.
+            every year. Here's why it makes sense for you.
           </p>
         </div>
       </section>
@@ -98,7 +111,7 @@ export default function WhyStudyAbroad() {
                 key={b.title}
                 className="p-6 border-border hover:border-gold hover:shadow-lg transition-all"
               >
-                <b.icon className="w-10 h-10 text-gold mb-4" />
+                <b.Icon className="w-10 h-10 text-gold mb-4" />
                 <h3 className="font-display font-bold text-navy text-xl mb-2">
                   {b.title}
                 </h3>
@@ -133,7 +146,7 @@ export default function WhyStudyAbroad() {
                 {comparison.map((row) => (
                   <tr
                     key={row.aspect}
-                    className="odd:bg-white even:bg-secondary"
+                    className="odd:bg-white even:bg-secondary border-b border-border"
                   >
                     <td className="px-6 py-3 font-medium text-navy">
                       {row.aspect}

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "@tanstack/react-router";
 import { CheckCircle } from "lucide-react";
+import SEOHead from "../components/SEOHead";
 
 const visaInfo = [
   {
@@ -112,15 +113,27 @@ const visaInfo = [
 export default function Visa() {
   return (
     <main className="pt-16 md:pt-20">
-      <section className="py-20 bg-gradient-to-br from-navy to-navy-dark text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative py-20 text-white overflow-hidden">
+        <SEOHead
+          title="MBBS Abroad Student Visa Guide 2026 | All Countries | VGLOBAL"
+          description="Complete student visa guide for MBBS abroad. Country-wise visa requirements, documents needed, processing time, fees. VGLOBAL experts handle entire visa process for students from Jaipur."
+          keywords="MBBS abroad student visa, visa requirements MBBS, student visa Kyrgyzstan, Russia student visa India, MBBS visa process"
+          canonicalPath="/visa"
+        />
+        <img
+          src="/assets/generated/visa-hero.dim_1200x600.jpg"
+          alt="Student visa guidance for MBBS abroad"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/60 to-navy/30 z-[1]" />
+        <div className="relative z-[2] container mx-auto px-4 text-center">
           <Badge className="bg-gold/20 text-gold border-gold/30 mb-4">
             Visa Guidance
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 drop-shadow-lg">
             Student Visa Guidance
           </h1>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">
+          <p className="text-white/90 text-lg max-w-2xl mx-auto">
             VGLOBAL assists with complete visa documentation and application for
             all destination countries.
           </p>

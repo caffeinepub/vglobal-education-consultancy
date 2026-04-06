@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import { Info } from "lucide-react";
+import SEOHead from "../components/SEOHead";
 
 const feeData = [
   {
@@ -82,15 +83,27 @@ const feeData = [
 export default function Fees() {
   return (
     <main className="pt-16 md:pt-20">
-      <section className="py-20 bg-gradient-to-br from-navy to-navy-dark text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative py-20 text-white overflow-hidden">
+        <SEOHead
+          title="MBBS Abroad Fee Structure 2026 | All Countries | VGLOBAL Jaipur"
+          description="Detailed MBBS abroad fee structure for all 9 countries: Kyrgyzstan, Russia, Georgia, Kazakhstan, Philippines, Bangladesh, China, Ukraine, Uzbekistan. Total cost breakdown including hostel and living."
+          keywords="MBBS abroad fees 2026, MBBS fee structure all countries, Kyrgyzstan MBBS fees, Russia MBBS cost, Georgia MBBS fees"
+          canonicalPath="/fees"
+        />
+        <img
+          src="/assets/generated/fees-hero.dim_1200x600.jpg"
+          alt="MBBS abroad fee structure"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/60 to-navy/30 z-[1]" />
+        <div className="relative z-[2] container mx-auto px-4 text-center">
           <Badge className="bg-gold/20 text-gold border-gold/30 mb-4">
             Fee Structure
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
-            MBBS Abroad Fee Structure 2024
+          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 drop-shadow-lg">
+            MBBS Abroad Fee Structure 2026
           </h1>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">
+          <p className="text-white/90 text-lg max-w-2xl mx-auto">
             Transparent, country-wise fee comparison. No hidden charges. No
             donation required.
           </p>

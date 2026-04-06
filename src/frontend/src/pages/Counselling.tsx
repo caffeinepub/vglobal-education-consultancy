@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, Clock, Loader2, Mail, Phone } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import SEOHead from "../components/SEOHead";
 import { useSubmitEnquiry } from "../hooks/useQueries";
 
 const countries = [
@@ -80,6 +81,12 @@ export default function Counselling() {
 
   return (
     <main className="pt-16 md:pt-20">
+      <SEOHead
+        title="Free MBBS Abroad Counselling | Book Session | VGLOBAL Jaipur"
+        description="Book a free MBBS abroad counselling session with VGLOBAL experts. Get personalized guidance on country selection, university admission, fees, eligibility, and visa. Call +91-7230032949."
+        keywords="free MBBS counselling Jaipur, MBBS abroad guidance, book counselling MBBS, VGLOBAL counselling session"
+        canonicalPath="/counselling"
+      />
       <section className="py-20 bg-gradient-to-br from-navy to-navy-dark text-white">
         <div className="container mx-auto px-4 text-center">
           <Badge className="bg-gold/20 text-gold border-gold/30 mb-4">
