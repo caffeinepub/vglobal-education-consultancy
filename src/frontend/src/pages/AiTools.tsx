@@ -2442,35 +2442,56 @@ export default function AiTools() {
       />
 
       {/* Hero */}
-      <section className="relative isolate py-20 text-white overflow-hidden min-h-[380px] flex items-center">
-        <img
-          src="/assets/generated/ai-tools-hero.dim_1200x600.jpg"
-          alt="AI MBBS Admission Tools"
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/70 to-navy/40 z-[1]" />
-        <div className="relative container mx-auto px-4 z-[2]">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Badge className="bg-gold/20 text-gold border-gold/30 mb-4">
-              Free AI-Powered Tools
-            </Badge>
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 max-w-2xl drop-shadow-lg">
-              Find Your Perfect MBBS University
-            </h1>
-            <p className="text-white/80 text-lg max-w-2xl drop-shadow-md">
-              Use our free AI tools to predict your chances, match universities,
-              check eligibility, and calculate your budget — all based on your
-              NEET score and goals.
-            </p>
-            <p className="text-white/60 text-sm mt-4">
-              Select a tool below to get started ↓
-            </p>
-          </motion.div>
+      <section className="relative z-10 py-16 md:py-24 text-white overflow-hidden bg-gradient-to-br from-navy via-navy to-blue-900">
+        {/* Decorative background blobs */}
+        <div className="pointer-events-none absolute top-0 left-0 w-72 h-72 bg-gold/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+        <div className="pointer-events-none absolute bottom-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            {/* Left column: text content */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-col items-start"
+            >
+              <Badge className="bg-gold/20 text-gold border-gold/30 mb-4">
+                Free AI-Powered Tools
+              </Badge>
+              <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
+                Find Your Perfect MBBS University
+              </h1>
+              <p className="text-white/80 text-lg mb-4">
+                Use our free AI tools to predict your chances, match
+                universities, check eligibility, and calculate your budget — all
+                based on your NEET score and goals.
+              </p>
+              <p className="text-white/60 text-sm">
+                Select a tool below to get started ↓
+              </p>
+            </motion.div>
+            {/* Right column: hero image */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="flex justify-center md:justify-end"
+            >
+              <div
+                className="w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl border border-white/10"
+                style={{ aspectRatio: "2/1" }}
+              >
+                <img
+                  src="/assets/generated/ai-tools-hero.dim_1200x600.jpg"
+                  alt="AI MBBS Admission Tools"
+                  className="w-full h-full object-cover object-center"
+                  loading="eager"
+                  width={600}
+                  height={300}
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -2495,9 +2516,7 @@ export default function AiTools() {
                   <div
                     className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${tool.color}`}
                   />
-                  <div
-                    className={`p-2 rounded-lg mb-3 mt-1 ${tool.accentBg} bg-opacity-10`}
-                  >
+                  <div className="p-2 rounded-lg mb-3 mt-2 bg-navy/10 flex items-center justify-center w-10 h-10">
                     <TIcon className="w-5 h-5 text-navy" />
                   </div>
                   <div className="font-semibold text-navy text-sm leading-tight">
